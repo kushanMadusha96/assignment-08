@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body>section:first-child {
+            position: absolute;
+            width: 1100px;
+            height: 500px;
+            border-bottom: 1px solid black;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .men {
+            width: 100px;
+            height: 150px;
+            background: #7db9e8;
+            margin-left:1px ;
+            position: relative;
+            top: 350px;
+        }
+        h1 {
+            color: #7db9e8;
+            width: fit-content;
+            height: fit-content;
+            position: relative;
+            top: 340px;
+        }
+        body>section:nth-child(2) {
+            width: 200px;
+            height: 50px;
+            position: absolute;
+            right: 0;
+            left: 0;
+            margin: auto;
+            top: 630px;
+        }
+        button {
+            width: 80px;
+            height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <section class="men"></section>
+        <h1 class="text"></h1>
+        <section class="men"><h1></h1></section>
+        <h1 class="text"></h1>
+        <section class="men"><h1></h1></section>
+        <h1 class="text"></h1>
+        <section class="men"><h1></h1></section>
+        <h1 class="text"></h1>
+        <section class="men"><h1></h1></section>
+        <h1 class="text"></h1>
+        <section class="men"><h1></h1></section>
+        <h1 class="text"></h1>
+    </section>
+    <section id="sec">
+        <button id="start">START</button>
+        <button id="stop">STOP</button>
+    </section>
+
+    <script src="lib/jquary.min.js"></script>
+
+    <script>
+        let texts = ["A", "B", "C", "D", "E", "F"];
+        let interval = null;
+
+        function changeText() {
+            for (let i = 0; i < texts.length; i++) {
+                $(".text").eq(i).text(texts[i]);
+            }
+            texts.unshift(texts.pop())
+
+        }
+            $("#start").on('click', () => {
+                if (interval == null) {
+                    interval =  setInterval(changeText, 1000);
+                }
+            });
+
+            $("#stop").on('click', () => {
+                clearInterval(interval);
+                interval = null;
+            });
+    </script>
+</body>
+</html>
